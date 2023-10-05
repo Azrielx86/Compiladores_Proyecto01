@@ -1,13 +1,14 @@
 %{
 #include <stdio.h>
 #include "utils.h"
-#include "symbol_table.h"
+#include "tables.h"
 
-Symbols* symbolTable;
+Constants* constantes;
 
 %}
 
 %option noyywrap
+%option yylineno
 
 MAYUS           [A-Z]
 MINUS           [a-z]
@@ -22,28 +23,45 @@ OP_ASIG         ({OP_ARITH}|\?)?~
 /* Operadores relacionales */
 /* Identificadores */
 INDENTIf        ({MAYUS}|{MINUS})({MAYUS}|{MINUS}|{DIG}){0,4}_
+
+/* Constantes numericas */
+INT_CONST       [-?]{DIG}+
 %%
 
 {OP_ARITH}      { 
-                    fprintf(yyout, "[Operador aritmético]"); 
+                    fprintf(yyout, "(%d)[Operador aritmetico]\n", yylineno); 
 
                 }
 
-{OP_ASIG}       { fprintf(yyout, "[Operador de asignación]"); }
+{OP_ASIG}       { fprintf(yyout, "(%d)[Operador de asignacion]\n", yylineno); }
 
 {INDENTIf}      { 
-                    fprintf(yyout, "[Identificador: %s]", yytext); 
-                    insert(symbolTable, yytext);
+                    fprintf(yyout, "(%d)[Identificador: %s]\n", yylineno, yytext);
                 }
+
+{INT_CONST}     {
+                    fprintf(yyout, "(%d)[Constante numerica: %d]\n", yylineno, atoi(yytext));
+                    insertConstant(constantes, atoi(yytext));
+                }
+
+\n { }
 
 %%
 
 int main()
 {
-    say_hello();
-    symbolTable = allocTable();
+    // =================== Inicializacion de las tablas ========================
+    // ===== Tabla de constantes
+    constantes = allocConstantsTable(constantes);
+
+
     yyin = fopen("text.txt", "r");
     yylex();
-    printTable(symbolTable);
+
+    // ====================== Impresion de las tablas ==========================
+    printf("\n\n");
+    printConstantsTable(constantes);
+    freeConstantsTable(constantes);
+
     return 0;
 }
