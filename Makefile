@@ -1,6 +1,9 @@
 CC = clang
-FLAGS = -DDEBUG -g -Wall
-#A simple makefile for building Flex / Bison template
+FLEX = flex
+# -g : Información de debug.
+# -gdwarf-4 : Para utilizar valgrind y clang.
+# -Wall : Para advertencias adicionales
+FLAGS = -g -gdwarf-4 -Wall
 
 all: lexer
 
@@ -8,7 +11,7 @@ lexer: lex.yy.c utils
 	$(CC) lex.yy.c *.o $(FLAGS) -o lexer
 
 lex.yy.c: lexer.l
-	flex lexer.l
+	$(FLEX) lexer.l
 
 utils:
 	$(CC) -c $(FLAGS) tables.c utils.c clases.c tokens.c errors.c
