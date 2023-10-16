@@ -1,3 +1,7 @@
+*
+!*.*
+!Doxyfile
+!Makefile
 *.yy.c
 *.exe
 *.o
