@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "utils.h"
 #include "tables.h"
+#include "clases.h"
 
 Constants* constantes;
 
@@ -15,6 +16,7 @@ MINUS           [a-z]
 DIG             [0-9]
 
 /* Palabras reservadas */
+P_RESV          cadena|caracter|else|entero|for|if|real|return|void|while
 /* Operadores aritméticos */
 OP_ARITH        [+\-*/$]
 /* Operadores de asignación */
@@ -27,15 +29,15 @@ INDENTIf        ({MAYUS}|{MINUS})({MAYUS}|{MINUS}|{DIG}){0,4}_
 /* Constantes numericas */
 INT_CONST       [-?]{DIG}+
 
-/* TODO: Probablemente para esta sección sea necesario crear regex para cada palabra reservada */
-P_RESV          cadena|caracter|else|entero|for|if|real|return|void|while
-
 ESPACIO         [[:space:]]+
 
 %%
 
 {P_RESV}        {
-                    fprintf(yyout, "(%d)[Palabra reservada: %s]\n", yylineno, yytext); 
+                    int id = buscar_valor(palabras_reservadas, palabras_reservadas_size, yytext);
+                    if (id == -1)
+                        fprintf(yyout, "[WARNING] - Palabra reservada no encontrada: %s", yytext);
+                    fprintf(yyout, "(%d)[Palabra reservada: %s - ID: %d]\n", yylineno, yytext, id); 
                 }
 
 {OP_ARITH}      { 

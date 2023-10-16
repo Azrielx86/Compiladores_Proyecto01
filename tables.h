@@ -63,28 +63,28 @@ typedef struct Tokens
 
 /**
  * TODO
- * @param tok_table 
- * @return 
+ * @param tok_table
+ * @return
  */
 Tokens *allocTokensTable(Tokens *tok_table);
 
 /**
  * TODO
- * @param tok_table 
+ * @param tok_table
  */
 void freeTokensTable(Tokens *tok_table);
 
 /**
  * TODO
- * @param tok_table 
- * @param line 
- * @param item 
+ * @param tok_table
+ * @param line
+ * @param item
  */
 void insertToken(Tokens *tok_table, int line, int item);
 
 /**
  * TODO
- * @param tok_table 
+ * @param tok_table
  */
 void printTokenTable(Tokens *tok_table);
 
