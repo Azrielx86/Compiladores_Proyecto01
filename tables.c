@@ -6,9 +6,6 @@ int insertConstant(Constants *const_table, float item)
 {
 	const_table->table[const_table->count] = item;
 	const_table->count++;
-#ifdef DEBUG
-	printf("\n [DEBUG] [Tabla de Constantes] Item insertado\n\t[%d] -> %f\n\n", const_table->count, item);
-#endif
 	return const_table->count - 1;
 }
 
@@ -68,4 +65,35 @@ void printLiteralsTable(Literals *lit_table)
 	printf("==== Tabla de literales ====\nItem\tValue\tTipo\n");
 	for (int i = 0; i < lit_table->count; i++)
 		printf("%d\t%s\t%d\n", i, lit_table->table[i], lit_table->type[i]);
+}
+
+// =============================================================================
+Strings *allocStringsTable()
+{
+	Strings *table;
+	table = malloc(sizeof(Strings));
+	table->count = 0;
+	return table;
+}
+
+void freeStringsTable(Strings *str_table)
+{
+	for (int i = 0; i < str_table->count; i++)
+		free(str_table->strings[i]);
+	free(str_table);
+}
+
+int insertString(Strings *str_table, char *item)
+{
+	str_table->strings[str_table->count] = malloc(sizeof(char) * 40);
+	strcpy(str_table->strings[str_table->count], item);
+	str_table->count++;
+	return str_table->count - 1;
+}
+
+void printStringsTable(Strings *str_table)
+{
+	printf("==== Tabla de literales ====\nItem\tValue\n");
+	for (int i = 0; i < str_table->count; i++)
+		printf("%d\t%s\n", i, str_table->strings[i]);
 }

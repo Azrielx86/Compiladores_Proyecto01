@@ -9,6 +9,7 @@
 
 Constants* constantes;
 Tokens* tokens;
+Strings *stringsTable;
 Literals *literals;
 ErrorsTable* errorsTable;
 
@@ -113,12 +114,14 @@ ESPACIO         [[:space:]]+
 
 {CADENA}        {
                     fprintf(yyout, "(%d)[Cadena: %s]\n", yylineno, yytext);
-                    insertToken(tokens, 8, 9999);
+                    int idx = insertString(stringsTable, yytext);
+                    insertToken(tokens, 8, idx);
                 }
 
 {CARACTER}      {
                     fprintf(yyout, "(%d)[Caracter: %s]\n", yylineno, yytext);
-                    insertToken(tokens, 9, 9999);
+                    int idx = insertString(stringsTable, yytext);
+                    insertToken(tokens, 9, idx);
                 }
 
 \n              { }
@@ -138,6 +141,7 @@ int main()
     // ===== Tabla de constantes
     constantes = allocConstantsTable(constantes);
     tokens = allocTokensTable(tokens);
+    stringsTable = allocStringsTable();
     literals = allocLiteralsTable();
     errorsTable = allocErrorsTable();
 
@@ -150,11 +154,13 @@ int main()
     printLiteralsTable(literals);
     printTokenTable(tokens);
     printErrorsTable(errorsTable);
-
+    printStringsTable(stringsTable);
 
     freeConstantsTable(constantes);
     freeTokensTable(tokens);
     freeLiteralsTable(literals);
+    freeErrorsTable(errorsTable);
+    freeStringsTable(stringsTable);
 
     return 0;
 }

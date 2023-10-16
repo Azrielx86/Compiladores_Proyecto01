@@ -27,6 +27,12 @@ typedef struct Constants
 	int count;
 } Constants;
 
+typedef struct Strings
+{
+	int count;
+	char *strings[MAX_ITEMS];
+} Strings;
+
 /**
  * Aloja espacio en memoria para la tabla de constantes.
  * @param const_table puntero a una tabla de constantes.
@@ -54,6 +60,24 @@ void *allocLiteralsTable();
 int findLiteral(Literals *lit_table, char *item);
 int insertLiteral(Literals *lit_table, char *item);
 void freeLiteralsTable(Literals *lit_table);
-void printLiteralsTable(Literals* lit_table);
+void printLiteralsTable(Literals *lit_table);
 
+// =============================================================================
+
+Strings *allocStringsTable();
+
+/**
+ * Libera la tabla de cadenas.
+ */
+void freeStringsTable(Strings *str_table);
+
+/**
+ * Inserta un item en la tabla de cadenas.
+ */
+int insertString(Strings *str_table, char* item);
+
+/**
+ * Imprime en pantalla la tabla de cadenas.
+ */
+void printStringsTable(Strings *str_table);
 #endif
