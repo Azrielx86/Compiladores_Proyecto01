@@ -13,10 +13,9 @@
 typedef struct Literals
 {
 	char *table[MAX_ITEMS];
+	int type[MAX_ITEMS];
 	int count;
 } Literals;
-
-void insert_literal(Literals *lit_table, char *item);
 
 /**
  * Estructura para la tabla de constantes, únicamente tiene la tabla y
@@ -27,6 +26,12 @@ typedef struct Constants
 	float table[MAX_ITEMS];
 	int count;
 } Constants;
+
+typedef struct Strings
+{
+	int count;
+	char *strings[MAX_ITEMS];
+} Strings;
 
 /**
  * Aloja espacio en memoria para la tabla de constantes.
@@ -43,49 +48,36 @@ void freeConstantsTable(Constants *const_table);
 /**
  * Inserta un item en la tabla de constantes
  */
-void insertConstant(Constants *const_table, float item);
+int insertConstant(Constants *const_table, float item);
 
 /**
  * Imprime en pantalla la tabla de constantes
  */
 void printConstantsTable(Constants *const_table);
 
-/**
- * Estructura para la tabla de tokens.
- * Se almacenan de la forma [clase, valor]
- * TODO : Completar los métodos para esta estructura.
- */
-typedef struct Tokens
-{
-	int table[MAX_ITEMS][2];
-	int count;
-} Tokens;
+// =============================================================================
+void *allocLiteralsTable();
+int findLiteral(Literals *lit_table, char *item);
+int insertLiteral(Literals *lit_table, char *item);
+void freeLiteralsTable(Literals *lit_table);
+void printLiteralsTable(Literals *lit_table);
+
+// =============================================================================
+
+Strings *allocStringsTable();
 
 /**
- * TODO
- * @param tok_table 
- * @return 
+ * Libera la tabla de cadenas.
  */
-Tokens *allocTokensTable(Tokens *tok_table);
+void freeStringsTable(Strings *str_table);
 
 /**
- * TODO
- * @param tok_table 
+ * Inserta un item en la tabla de cadenas.
  */
-void freeTokensTable(Tokens *tok_table);
+int insertString(Strings *str_table, char* item);
 
 /**
- * TODO
- * @param tok_table 
- * @param line 
- * @param item 
+ * Imprime en pantalla la tabla de cadenas.
  */
-void insertToken(Tokens *tok_table, int line, int item);
-
-/**
- * TODO
- * @param tok_table 
- */
-void printTokenTable(Tokens *tok_table);
-
+void printStringsTable(Strings *str_table);
 #endif
