@@ -28,13 +28,13 @@ P_RESV          cadena|caracter|else|entero|for|if|real|return|void|while
 /* 1. Operadores aritméticos */
 OP_ARITH        [+\-*/$]
 /* 2. Operadores de asignación */
-OP_ASIG         ({OP_ARITH})?~
+OP_ASIG         ({OP_ARITH}|\?)?~
 /* 3. Simbolos especiales */
 SIMB_ESP        [\(\)\{\}\[\]&,:]
 /* 4. Operadores relacionales */
 OP_RELAC        ((\^\^|\^\"|=)=?)|<>
 /* 5. Identificadores */
-INDENTIF        ({MAYUS}|{MINUS})({MAYUS}|{MINUS}|{DIG}){0,4}_
+INDENTIf        ({MAYUS}|{MINUS})({MAYUS}|{MINUS}|{DIG}){0,4}_
 INV_IDENT       {MAYUS}|{MINUS})({MAYUS}|{MINUS}|{DIG}
 /* 6. Constantes numericas */
 INT_CONST       (-?){DIG}{1,6}
@@ -94,7 +94,7 @@ ESPACIO         [[:space:]]+
                     insertErrorsTable(errorsTable, yylineno, yytext);
                 }
 
-{INDENTIF}      { 
+{INDENTIf}      { 
                     fprintf(yyout, "(%d)[Identificador: %s]\n", yylineno, yytext);
                     int id = insertLiteral(literals, yytext);
                     insertToken(tokens, 5, id);
@@ -135,8 +135,13 @@ ESPACIO         [[:space:]]+
 
 %%
 
-int main()
+int main(int argc, char *argv[])
 {
+    if (argc != 2){
+        printf("Uso: %s <nombre_del_archivo>\n", argv[0]);
+        return 1; // Terminar el programa con código de error
+    }
+
     // =================== Inicializacion de las tablas ========================
     // ===== Tabla de constantes
     constantes = allocConstantsTable(constantes);
@@ -144,8 +149,13 @@ int main()
     stringsTable = allocStringsTable();
     literals = allocLiteralsTable();
     errorsTable = allocErrorsTable();
-
-    yyin = fopen("text.txt", "r");
+    
+    /*yyin = fopen("text.txt", "r");*/
+    yyin = fopen(argv[1], "r");
+    if (yyin == NULL){
+        perror("Error al abrir el archivo");
+        return 1; // Terminar el programa con código de error
+    }
     yylex();
 
     // ====================== Impresion de las tablas ==========================
