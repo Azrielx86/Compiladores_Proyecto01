@@ -17,26 +17,36 @@ typedef struct Tokens
 } Tokens;
 
 /**
+ * Aloja memoria para almacenar la tabla de tokens.
  * @param tok_table
  * @return
  */
 Tokens *allocTokensTable(Tokens *tok_table);
 
 /**
+ * Libera la memoria utilizada por la tabla de tokens.
  * @param tok_table
  */
 void freeTokensTable(Tokens *tok_table);
 
 /**
- * @param tok_table
- * @param line
- * @param item
+ * Inseta un token en la tabla de tokens.
+ * @param tok_table Tabla de tokens.
+ * @param clase Clase del token.
+ * @param item Valor del token.
  */
 void insertToken(Tokens *tok_table, int clase, int item);
 
 /**
+ * Imprime la tabla de tokens en stdout.
  * @param tok_table
  */
 void printTokenTable(Tokens *tok_table);
+
+/**
+ * Guarda la tabla de tokens en el archivo tokens.csv
+ * @param tok_table
+ */
+void guardarArchivoTokens(Tokens *tok_table);
 
 #endif

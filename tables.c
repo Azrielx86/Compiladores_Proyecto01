@@ -93,7 +93,7 @@ int insertString(Strings *str_table, char *item)
 
 void printStringsTable(Strings *str_table)
 {
-	printf("==== Tabla de literales ====\nItem\tValue\n");
+	printf("==== Tabla de cadenas ====\nItem\tValue\n");
 	for (int i = 0; i < str_table->count; i++)
 		printf("%d\t%s\n", i, str_table->strings[i]);
 }

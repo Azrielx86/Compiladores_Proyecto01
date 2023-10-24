@@ -28,13 +28,13 @@ P_RESV          cadena|caracter|else|entero|for|if|real|return|void|while
 /* 1. Operadores aritméticos */
 OP_ARITH        [+\-*/$]
 /* 2. Operadores de asignación */
-OP_ASIG         ({OP_ARITH}|\?)?~
+OP_ASIG         ({OP_ARITH})?~
 /* 3. Simbolos especiales */
 SIMB_ESP        [\(\)\{\}\[\]&,:]
 /* 4. Operadores relacionales */
 OP_RELAC        ((\^\^|\^\"|=)=?)|<>
 /* 5. Identificadores */
-INDENTIf        ({MAYUS}|{MINUS})({MAYUS}|{MINUS}|{DIG}){0,4}_
+INDENTIF        ({MAYUS}|{MINUS})({MAYUS}|{MINUS}|{DIG}){0,4}_
 INV_IDENT       {MAYUS}|{MINUS})({MAYUS}|{MINUS}|{DIG}
 /* 6. Constantes numericas */
 INT_CONST       (-?){DIG}{1,6}
@@ -94,7 +94,7 @@ ESPACIO         [[:space:]]+
                     insertErrorsTable(errorsTable, yylineno, yytext);
                 }
 
-{INDENTIf}      { 
+{INDENTIF}      { 
                     fprintf(yyout, "(%d)[Identificador: %s]\n", yylineno, yytext);
                     int id = insertLiteral(literals, yytext);
                     insertToken(tokens, 5, id);
@@ -165,6 +165,7 @@ int main(int argc, char *argv[])
     printTokenTable(tokens);
     printErrorsTable(errorsTable);
     printStringsTable(stringsTable);
+    guardarArchivoTokens(tokens);
 
     freeConstantsTable(constantes);
     freeTokensTable(tokens);

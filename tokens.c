@@ -23,3 +23,12 @@ void printTokenTable(Tokens *tok_table)
 	for (int i = 0; i < tok_table->count; i++)
 		printf("(%d,%d)\n", tok_table->table[i][0], tok_table->table[i][1]);
 }
+
+void guardarArchivoTokens(Tokens *tok_table)
+{
+	FILE *file = fopen("tokens.csv", "w");
+	fprintf(file, "CLASE,VALOR\n");
+	for (int i = 0; i < tok_table->count; i++)
+		fprintf(file, "%d,%d\n", tok_table->table[i][0], tok_table->table[i][1]);
+	fclose(file);
+}
