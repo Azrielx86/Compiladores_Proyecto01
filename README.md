@@ -6,7 +6,7 @@ Semestre 2024-1
 ```
 
 ## Avance actual
-- [ ] Lectura del archivo como argumento desde la terminal
+- [x] Lectura del archivo como argumento desde la terminal
 - [x] Tabla de clases (Componentes léxicos)
 - [x] Tabla de constantes
 - [x] Tabla de tokens
