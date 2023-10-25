@@ -162,9 +162,9 @@ int main(int argc, char *argv[])
     printf("\n\n");
     printConstantsTable(constantes);
     printLiteralsTable(literals);
+    printStringsTable(stringsTable);
     printTokenTable(tokens);
     printErrorsTable(errorsTable);
-    printStringsTable(stringsTable);
     guardarArchivoTokens(tokens);
 
     freeConstantsTable(constantes);
