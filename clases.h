@@ -3,6 +3,9 @@
 
 #include <stdio.h>
 
+/**
+ * @brief Tabla de palabras reservadas.
+ */
 static const char *palabras_reservadas[] = {
     "cadena",
     "caracter",
@@ -15,8 +18,14 @@ static const char *palabras_reservadas[] = {
     "void",
     "while"};
 
+/**
+ * @brief Conteo de la tabla de palabras reservadas.
+ */
 static const int palabras_reservadas_size = 10;
 
+/**
+ * @brief Tabla de operadores relacionales.
+ */
 static const char *op_relacional[] = {
     "^^",
     "^\"",
@@ -25,8 +34,14 @@ static const char *op_relacional[] = {
     "^\"=",
     "<>"};
 
+/**
+ * @brief Conteo de operadores relacionales 
+ */
 static const int op_relacional_size = 6;
 
+/**
+ * @brief Tabla de operadores de asignación.
+ */
 static const char *op_asignacion[] = {
     "~",
     "+~",
@@ -35,6 +50,9 @@ static const char *op_asignacion[] = {
     "/~",
     "$~"};
 
+/**
+ * @brief Conteo de los operadores de asignación.
+ */
 static const int op_asignacion_size = 6;
 
 /**

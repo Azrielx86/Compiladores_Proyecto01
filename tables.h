@@ -7,7 +7,7 @@
 #define MAX_ITEMS 100
 
 /**
- * Estructura para la tabla de literales.
+ * @brief Estructura para la tabla de literales.
  */
 typedef struct Literals
 {
@@ -17,7 +17,7 @@ typedef struct Literals
 } Literals;
 
 /**
- * Estructura para la tabla de constantes, únicamente tiene la tabla y
+ * @brief Estructura para la tabla de constantes, únicamente tiene la tabla y
  * un contador.
  */
 typedef struct Constants
@@ -26,6 +26,11 @@ typedef struct Constants
 	int count;
 } Constants;
 
+/**
+ * @brief Estructura para la tabla de cadenas, únicamente tiene una tabla y
+ * un contador.
+ * 
+ */
 typedef struct Strings
 {
 	int count;
@@ -40,17 +45,17 @@ typedef struct Strings
 Constants *allocConstantsTable(Constants *const_table);
 
 /**
- * Libera la tabla de constantes.
+ * @brief Libera la tabla de constantes.
  */
 void freeConstantsTable(Constants *const_table);
 
 /**
- * Inserta un item en la tabla de constantes
+ * @brief Inserta un item en la tabla de constantes
  */
 int insertConstant(Constants *const_table, float item);
 
 /**
- * Imprime en pantalla la tabla de constantes
+ * @brief Imprime en pantalla la tabla de constantes
  */
 void printConstantsTable(Constants *const_table);
 
@@ -97,17 +102,17 @@ void printLiteralsTable(Literals *lit_table);
 Strings *allocStringsTable();
 
 /**
- * Libera la tabla de cadenas.
+ * @brief Libera la tabla de cadenas.
  */
 void freeStringsTable(Strings *str_table);
 
 /**
- * Inserta un item en la tabla de cadenas.
+ * @brief Inserta un item en la tabla de cadenas.
  */
 int insertString(Strings *str_table, char* item);
 
 /**
- * Imprime en pantalla la tabla de cadenas.
+ * @brief Imprime en pantalla la tabla de cadenas.
  */
 void printStringsTable(Strings *str_table);
 #endif
