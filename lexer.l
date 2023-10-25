@@ -173,5 +173,8 @@ int main(int argc, char *argv[])
     freeErrorsTable(errorsTable);
     freeStringsTable(stringsTable);
 
+    fclose(yyin);
+    yylex_destroy();
+
     return 0;
 }

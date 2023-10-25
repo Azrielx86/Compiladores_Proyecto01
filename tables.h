@@ -8,7 +8,6 @@
 
 /**
  * Estructura para la tabla de literales.
- * TODO : Completar los métodos para esta estructura.
  */
 typedef struct Literals
 {
@@ -56,10 +55,41 @@ int insertConstant(Constants *const_table, float item);
 void printConstantsTable(Constants *const_table);
 
 // =============================================================================
+/**
+ * @brief Aloja espacio en memoria para la tabla de literales.
+ */
 void *allocLiteralsTable();
+
+/**
+ * @brief Encuentra una de las literales, por si ya se ha añadido a la tabla.
+ * 
+ * @param lit_table Tabla de literales.
+ * @param item Literal a buscar.
+ * @return int Índice de la literal si se encuentra, -1 en caso contrario.
+ */
 int findLiteral(Literals *lit_table, char *item);
+
+/**
+ * @brief Inserta una literal en la tabla de literales.
+ * 
+ * @param lit_table Tabla de literales.
+ * @param item Item a insertar.
+ * @return int Índice donde se insertó el item.
+ */
 int insertLiteral(Literals *lit_table, char *item);
+
+/**
+ * @brief Libera el espacio en memoria ocupado por la tabla de literales.
+ * 
+ * @param lit_table Tabla de literales.
+ */
 void freeLiteralsTable(Literals *lit_table);
+
+/**
+ * @brief Imprime la tabla de literales en stdout.
+ * 
+ * @param lit_table Tabla de literales.
+ */
 void printLiteralsTable(Literals *lit_table);
 
 // =============================================================================
