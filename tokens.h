@@ -7,7 +7,7 @@
 #define MAX_ITEMS 100
 
 /**
- * Estructura para la tabla de tokens.
+ * @brief Estructura para la tabla de tokens.
  * Se almacenan de la forma [clase, valor]
  */
 typedef struct Tokens
