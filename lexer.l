@@ -37,13 +37,13 @@ OP_RELAC        ((\^\^|\^\"|=)=?)|<>
 INDENTIF        ({MAYUS}|{MINUS})({MAYUS}|{MINUS}|{DIG}){0,4}_
 INV_IDENT       {MAYUS}|{MINUS})({MAYUS}|{MINUS}|{DIG}
 /* 6. Constantes numericas */
-INT_CONST       (-?){DIG}{1,6}
+INT_CONST       ([+-]?)[1-9]{DIG}{0,5}
 /* 7. Constantes numericas reales */
-FLT_CONST       {DIG}*\.{DIG}*
+FLT_CONST       ([+-]?)([1-9]{DIG}{0,5})?*\.({DIG}{1,6})?
 /* 8. Constantes cadena */
-CADENA          \"(.){2,38}\"
+CADENA          \".{0,38}\"
 /* 9. Constantes caracter */
-CARACTER        \'(.)\'
+CARACTER        \'.\'
 
 ESPACIO         [[:space:]]+
 

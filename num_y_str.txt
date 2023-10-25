@@ -1,0 +1,18 @@
+-3242.32
+-56+ +46 
+56- 41 
+72+a_ 
+0024
+0023.0324
+2.67
+.85
+31.
+
+"Hola mundo!"
+'a'
+''
+'as'
+"Esta es una cadena"
+""
+"Esto tiene muchos caracteres, tal vez mas de 40..."
+"Esto tiene justo unos 40 caracteres..."
