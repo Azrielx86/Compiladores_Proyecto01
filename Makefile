@@ -14,7 +14,7 @@ lex.yy.c: lexer.l
 	$(FLEX) lexer.l
 
 utils:
-	$(CC) -c $(FLAGS) tables.c utils.c clases.c tokens.c errors.c
+	$(CC) -c $(FLAGS) tables.c clases.c tokens.c errors.c
 
 clean:
 	rm *.yy.c

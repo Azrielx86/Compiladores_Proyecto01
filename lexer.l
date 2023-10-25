@@ -1,7 +1,6 @@
 %{
 #include <stdio.h>
 #include <string.h>
-#include "utils.h"
 #include "tables.h"
 #include "clases.h"
 #include "tokens.h"
